@@ -57,7 +57,6 @@ public class CreateBookingServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
 		String destination = request.getParameter("destination");
