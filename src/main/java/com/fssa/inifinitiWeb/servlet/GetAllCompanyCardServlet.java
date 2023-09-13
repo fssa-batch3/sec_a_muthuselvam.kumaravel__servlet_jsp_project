@@ -14,7 +14,7 @@ import com.fssa.inifiniti.model.Booking;
 import com.fssa.inifiniti.model.CompanyCard;
 import com.fssa.inifiniti.services.*;
 import com.fssa.inifiniti.services.exceptions.ServiceException;
-
+//before copy paste
 /**
  * Servlet implementation class GetAllCompanyCardServlet
  */
