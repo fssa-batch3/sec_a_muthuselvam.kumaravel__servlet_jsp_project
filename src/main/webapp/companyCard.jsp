@@ -8,6 +8,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../Assests/css/company logo.css" />
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.css">
+	 <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"> </script>
 <title>COMPANIES</title>
 <style type="text/css">
 @import
@@ -36,7 +38,7 @@ body {
 body h1 {
 	position: absolute;
 	left: 75px;
-	top: 55px;
+	top: 35px;
 	/* margin-left: 80px; */
 	/* margin-top: 60px; */
 	color: #f9004d;
@@ -69,6 +71,20 @@ body h1 {
 	margin: 100px 50px 100px 80px;
 }
 
+.notify {
+    position: absolute;
+    top: 46px;
+    right: -477px;
+    max-width: 400px;
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    animation-name: fadeOutRight;
+    animation-delay: 1s;
+    animation-duration: 3s;
+}
 .card {
 	position: relative;
 	width: 320px;
@@ -204,20 +220,21 @@ input[type=text]::placeholder {
 </style>
 </head>
 <body>
- <% String errMsg = request.getParameter("error");
+	<div class="company-2">
+		<h1 class="cmpy">Select Your Company</h1>
+
+	</div>
+	 <% String errMsg = request.getParameter("error");
     if(errMsg!=null){
     	%>
       <script type="text/javascript"> 
-      alert("<%= errMsg %>");
+      Notify.error("<%= errMsg %>");
       </script>	
     	
     	<%
     }
     %>
-	<div class="company-2">
-		<h1 class="cmpy">Select Your Company</h1>
-
-	</div>
+	
 	<section class="main">
 		<%
 		List<CompanyCard> companyList = (List<CompanyCard>) request.getAttribute("COMPANY_LIST");

@@ -59,7 +59,7 @@ public class EditBookingServlet extends HttpServlet {
 		} catch (ServiceException e) {
 			String msg = e.getMessage();
 			String[] error = msg.split(":");
-			response.sendRedirect("bookingList.jsp?error="+error[1]+"&email="+email);
+			response.sendRedirect("bookingList.jsp?error="+msg+"&email="+email);
 		}
 	}
 		

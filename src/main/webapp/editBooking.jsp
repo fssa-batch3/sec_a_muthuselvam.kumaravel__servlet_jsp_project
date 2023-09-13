@@ -151,12 +151,12 @@ label.light {
   
   <div class="col-12">
     <label for="inputAddress" class="form-label">Destination:</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="destination">
+    <input type="text" class="form-control" id="inputAddress" placeholder="Taramani" name="destination" required>
   </div>
   
   <div class="col-12">
     <label for="inputZip" class="form-label">Seat Num:</label>
-    <input type="text" class="form-control" id="inputZip" name="seatnum">
+    <input type="number" class="form-control" id="inputZip" name="seatnum" min="1" required>
   </div>
   <div class="col-4">
     <button type="submit" class="btn btn-primary">Submit</button>

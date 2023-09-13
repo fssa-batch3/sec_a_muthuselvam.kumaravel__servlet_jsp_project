@@ -140,22 +140,19 @@ label.light {
 	
 	UserService userService = new UserService();
 	User username = userService.findUserNameByEmail(loggedInEmail);
-	
-	
-	
 %>
         <h1> Reservation Form </h1>
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Username</label>
-    <input type="text"  class="form-control" id="inputEmail4" name="username" value="<%=username.getUserName()%>" >
+    <input type="text"  class="form-control" id="inputEmail4" name="username" value="<%=username.getUserName()%>"  required>
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label">Email</label>
-    <input type="text" class="form-control" id="inputPassword4"name="email" value="<%=loggedInEmail%>"  >
+    <input type="text" class="form-control" id="inputPassword4"name="email" value="<%=loggedInEmail%>" required >
   </div>
   <div class="col-12">
     <label for="inputAddress" class="form-label">Destination:</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="destination">
+    <input type="text" class="form-control" id="inputAddress" placeholder="Taramani" name="destination" required>
   </div>
   <div class="col-12">
     <label for="inputAddress" class="form-label">Company Name:</label>
@@ -165,7 +162,7 @@ label.light {
   	
     if(companyName!=null){
    %>
-    <input type="text" class="form-control" id="inputAddress" value="<%= companyName%>" name="companyName">
+    <input type="text" class="form-control" id="inputAddress" value="<%= companyName%>" name="companyName" required>
     <%
 	}
     
@@ -213,10 +210,10 @@ label.light {
   </div>
   <div class="col-md-4">
     <label for="inputZip" class="form-label">Seat Num:</label>
-    <input type="text" class="form-control" id="inputZip" name="seatnum">
+    <input type="number" class="form-control" id="inputZip" name="seatnum" min="1" required >
   </div>
   <div class="col-md-6">
-    <button type="submit" class="btn btn-primary">Sign in</button>
+    <button type="submit" class="btn btn-primary">Book</button>
   </div>
 </form>
        

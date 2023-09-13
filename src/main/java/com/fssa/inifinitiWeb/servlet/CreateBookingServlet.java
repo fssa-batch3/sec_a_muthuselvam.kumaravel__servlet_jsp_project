@@ -76,9 +76,8 @@ public class CreateBookingServlet extends HttpServlet {
 			response.sendRedirect("GetAllBookingsServlet?email="+email);
 		} catch (ServiceException e) {
 			String msg = e.getMessage();
-			String[] error = msg.split(":");
-			response.sendRedirect("GetAllCompanyCardServlet?error="+error[1]);
-			out.print(e.getMessage());
+			System.out.println(msg);
+			response.sendRedirect("GetAllCompanyCardServlet?error="+msg);
 		}
 		
 	}

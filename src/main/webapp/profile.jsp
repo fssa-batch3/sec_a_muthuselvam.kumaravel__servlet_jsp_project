@@ -170,7 +170,7 @@ color: #fff;
       <a href="#">Password</a>
       <a href="#" id="delete" >Delete</a>
     </div>
-    <span style="font-size:40px; cursor:pointer; margin-left:-370px; color: #000;" >&#9776; Menu</span>
+    <span > <a href="home.jsp"  style="font-size:40px; cursor:pointer; margin-left:-370px; color: #000;">Back</a> </span>
     <div class="container-xl px-4 mt-4">
 
 
