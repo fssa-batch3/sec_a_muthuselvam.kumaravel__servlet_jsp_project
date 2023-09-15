@@ -51,11 +51,11 @@ public class RegisterServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			UserService.registerUser(user1);
-			response.sendRedirect("register.jsp?successMsg=Registration success");
+			response.sendRedirect("login.jsp?successMsg=Registration success");
 		} catch (ServiceException e) {
 			String msg = e.getMessage();
 			//String[] error = msg.split(":");
-			response.sendRedirect("register.jsp?error="+msg);
+			response.sendRedirect("login.jsp?error="+msg);
 			out.print(e.getMessage());
 		}
 		

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-signin-client_id" content="152776570820-3fi9kjn4vc40juhi7845iq2gbvt45nn3.apps.googleusercontent.com">
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../Assests/css/login.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src=" https://smtpjs.com/v3/smtp.js"></script>
+    <title>Sign in & Sign up Form</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <!-- log in -->
+          <form action="#" class="sign-in-form" id="log_form">
+            <h2 class="title">Sign in</h2>
+            <div class="input-field">
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                required
+                value="100dayprojectfssa@gmail.com"
+              />
+            </div>
+            <div class="input-field">
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                pattern="^\S{4,25}\S"
+                minlength="5"
+                maxlength="25"
+                value="Muthu@143"
+                required
+              />
+              <i class="fa-solid fa-eye" id="eye"></i>
+            </div>
+            <!-- <div id=”strength-bar”></div> -->
+            <button type="submit" class="btn solid" onclick="sendOtp()">Login</button>
+            <p class="social-text">Or Sign in with social platf<span>orms</span></p>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+          </form>
+
+          <!-- sign in -->
+
+          <form name="myForm" action="#" class="sign-up-form" id="sign_form">
+            <h2 class="title">Sign up</h2>
+            <div class="input-field">
+              <input
+                type="text"
+                id="username_1"
+                name="fname"
+                autocomplete="off"
+                pattern="[A-Za-z0-9]{1,16}"
+                placeholder="Username"
+                minlength="6"
+                maxlength="25"
+                value="muthu144"
+                required
+              />
+              <small id="small"></small>
+            </div>
+            <div class="input-field">
+              <input
+                class="email-hover"
+                type="email"
+                id="email_1"
+                placeholder="Email"
+                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                value="100dayprojectfssa@gmail.com"
+                required
+              />
+              <small>Error Message</small>
+            </div>
+            <div class="input-field">
+              <input
+                id="password_1"
+                type="password"
+                placeholder="Password"
+                autocomplete="off"
+                minlength="8"
+                maxlength="25"
+                oninput="strengthChecker()"
+                pattern="^\S{8,25}\S"
+                value="Muthu@143"
+                required
+              />
+              <i class="fa-solid fa-eye" id="eye2"></i>
+              <small>Error Message</small>
+            </div>
+            <div id="strength-bar" ></div>
+
+            <div class="input-field">
+              <input
+                id="password_2"
+                type="password"
+                placeholder="Confirm Password"
+                autocomplete="off"
+                minlength="8"
+                maxlength="25"
+                pattern="^\S{8,25}\S"
+                value="Muthu@143"
+                required
+              />
+              <i class="fa-solid fa-eye" id="eye3"></i>
+
+              <small>Error Message</small>
+            </div>
+            <button class="btn" type="submit">Sign up</button>
+            <p class="social-text">Or Sign up with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>New here ?</h3>
+            <p>
+              You are new to this site so you are asked to register, Click the
+              below button to register
+            </p>
+            <button class="btn transparent" id="sign-up-btn">Sign up</button>
+          </div>
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>One of us ?</h3>
+            <p>Are you Exisiting user?? click the below button to login</p>
+            <button class="btn transparent" id="sign-in-btn">Sign in</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../Assests/js/login.js"></script>
+    <script src="../Assests/js/otpverify.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"> </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type='text/javascript'>
+  (function(I, L, T, i, c, k, s) {if(I.iticks) return;I.iticks = {host:c, settings:s, clientId:k, cdn:L, queue:[]};var h = T.head || T.documentElement;var e = T.createElement(i);var l = I.location;e.async = true;e.src = (L||c)+'/client/inject-v2.min.js';h.insertBefore(e, h.firstChild);I.iticks.call = function(a, b) {I.iticks.queue.push([a, b]);};})(window, 'https://cdn-v1.intelliticks.com/prod/common', document, 'script', 'https://app.intelliticks.com', 'fEdfoxM4XCqScdC9R_c', {});
+</script>
+                  
+  </body>
+</html>

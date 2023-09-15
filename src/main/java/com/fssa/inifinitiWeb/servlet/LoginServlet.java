@@ -54,11 +54,11 @@ public class LoginServlet extends HttpServlet {
 			UserService.loginUser(email,password);
 			HttpSession session = request.getSession();
 			session.setAttribute("loggedInEmail", email);
-			response.sendRedirect("home.jsp");	
+			response.sendRedirect("index.jsp");	
 		} catch ( ServiceException e) {
 			String msg = e.getMessage();
 			String[] error = msg.split(":");
-			response.sendRedirect("register.jsp?error="+error[1]);
+			response.sendRedirect("login.jsp?error="+error[1]);
 			out.print(e.getMessage());
 			
 		}

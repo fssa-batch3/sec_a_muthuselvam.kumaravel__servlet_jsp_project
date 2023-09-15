@@ -29,7 +29,7 @@ public class LogoutServlet extends HttpServlet {
 		}
 		
 		// Redirecting to login page since we have logged out
-		response.sendRedirect("register.jsp");
+		response.sendRedirect("login.jsp");
 	}
 
 }

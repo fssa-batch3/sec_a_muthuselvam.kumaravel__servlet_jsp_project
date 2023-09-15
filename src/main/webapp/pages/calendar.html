@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link rel="stylesheet" href="../Assests/css/calendar.css" />
+  </head>
+
+  <body class="light">
+    <img
+      src="../Assests/images/Screenshot (54).jpg"
+      alt=""
+      width="500"
+      height="550"
+      class="cal"
+    />
+    <h1>Select Your Time Slot</h1>
+
+    <h3>Select Date:</h3>
+    <input type="date" />
+    <h3 class="h3-2">Select Time:</h3>
+    <input type="time" class="time-start" />
+
+    <input type="time" class="time-end" />
+
+    <h3 class="location">Select Location:</h3>
+
+    <form autocomplete="off" action="/action_page.php">
+      <div class="autocomplete" style="width: 300px">
+        <input id="myInput" type="text" name="myCountry" placeholder="" />
+      </div>
+    </form>
+
+   
+    <button class="continue">
+      <a href="../pages/booking.html" class="continue-1"> CONTINUE </a>
+    </button>
+
+    <script src="../Assests/js/calendar.js"></script>
+  </body>
+</html>
