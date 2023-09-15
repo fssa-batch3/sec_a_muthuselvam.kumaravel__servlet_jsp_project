@@ -23,7 +23,7 @@ form{
   /* align-items: center; */
   background-color: #ffffff;
   width: 800px;
-  height: 1150px;
+  height: 1500px;
   padding-bottom: 100px;
   margin-left: 320px;
   margin-top: 150px;
@@ -34,10 +34,16 @@ form{
 }
 
 #main{
-  margin-top: -50px;
+  margin-top: 25px;
   padding: 100px 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
+#main_2{
+	padding-top: 20px;
+  padding-bottom: 20px;
+	}
 
 #main_3{
   vertical-align: 20px;
@@ -45,6 +51,51 @@ form{
   margin-top: 30px;
 }
 
+#subHeader_1{
+	padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#label_8{
+	padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#name{
+	padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#last_name{
+	padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#email-top{
+	padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+#cid_6{
+	padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#phone
+{
+	padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#departure{
+	padding-top: 20px;
+  padding-bottom: 20px;
+}
+#cid_7{
+	padding-top: 20px;
+  padding-bottom: 20px;
+}
 #main_3 label{
   font-size: 20px;
   font-weight: 500;
@@ -53,12 +104,12 @@ form{
 #cid_4 {
   margin-top: 20px;
 }
-
-div{
-  /* margin-top: 20px; */
-  padding-top: 20px;
+#cid_2{
+	padding-top: 20px;
   padding-bottom: 20px;
 }
+
+
 
 label{
   padding-top: 20px;
@@ -218,7 +269,7 @@ select:hover {
 }
 
 #second{
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 #departure .date{
@@ -226,3 +277,76 @@ select:hover {
   top: 40px;
   right: 282px;
 }
+
+.showtime-pill-container {
+    margin: 8px 7px 4px 9px;
+    width: calc(100% / 3 - 16px);
+    max-width: 133px;
+}
+.hour{
+	position: absolute;
+}
+.time_slot{
+display: flex;
+flex-wrap: wrap;
+overflow-y: scroll;
+width: 468px;
+height: 200px;
+border: 1px solid #e1e2e8;
+  outline: none;
+  border-radius: 4px;
+}
+
+.time{
+    border: 1px solid #999;
+    color: #4abd5d;
+    padding: 4px;
+    border-radius: 4px;
+    width: 129px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    margin: 6px 5px 3px 7px;
+}
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    text-decoration: none;
+    vertical-align: baseline;
+    background: 0 0;
+}
+
+.showtime-pill-container .showtime-pill .__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 2px;
+    height: 14px;
+}
+
+.showtime-pill-container .showtime-pill .attribute {
+    font-size: 10px;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.showtime-pill-container .showtime-pill .__details .__text {
+    margin: 0 auto;
+    }
+    
+  .time.selected{
+		background-color: #999;
+		color: #fff;
+	}
+	.time:hover{
+		background-color: #999;
+		color: #fff;
+	}

@@ -27,11 +27,11 @@
 			</div>
 			<hr>
 
-			<div>
+			<div id="label_8">
 				<label id="label_8"> Name<span>*</span>
 				</label>
 
-				<div>
+				<div id="name">
 					<input type="text" id="first_29" value="<%= user.getFirstName() %>"  readonly><label
 						id="sublabel_8_first" style="min-height: 13px"  >First Name</label>
 					<div id="last_name">
@@ -48,12 +48,21 @@
 					<input type="email" id="input_30" value="<%= loggedInEmail %>" readonly>
 				</div>
 			</div>
-			<div>
+			<div id="phone">
 				<label id="label_6"> Phone Number<span>*</span>
 				</label>
 				<div id="cid_6">
 					<input type="number" id="input_31_full" value="<%= user.getPhoneNumber() %>"  readonly>
 				</div>
+			</div>
+			<div id="phone">
+				<label id="label_6"> Destination <span>*</span>
+				</label>
+				<div id="cid_7">
+				<select id="date">
+						<option hidden disabled selected value></option>
+					</select>
+					</div>
 			</div>
 			<div id="departure">
 				<label id="label_6">Departure Date/Time <span>*</span>
@@ -64,22 +73,28 @@
 					</select> <label class="date">Date</label>
 				</div>
 				<div id="cid_7">
-					<select id="time">
-						 <% 
+				<div class="time_slot">
+					 <% 
 
 	ShuttleService shuttleService  = new ShuttleService();
 	List<Shuttle> shuttleList = shuttleService.readAllTime();
 	
 	for (Shuttle i : shuttleList){
     	%>
-    	 <option ><%= i.getTime() %></option>
-    
-    	<%
+					<div class="time" id="<%= i.getTime() %>" >
+							
+												<%= i.getTime() %>
+											
+					</div>
+					<%
 	}
     
     
     %>
-					</select> <label class="date">Hour Minutes</label>
+					</div>
+					 <label class="hour">Hour Minutes</label>
+					
+					
 				</div>
 
 			</div>
@@ -104,6 +119,26 @@
 
 
 	</form>
-	<script src="./Assests/js/booking.js"></script>
+	<!--   <script src="./Assests/js/booking.js"></script>-->
+	<script type="text/javascript">
+	const slots = document.querySelector(".time_slot");
+	slots.addEventListener("click", (e) => {
+		let time_selected = document.querySelectorAll('.time.selected');
+	if (
+		    e.target.classList.contains("time") &&
+		    !e.target.classList.contains("selected") 
+		  ) {
+		
+		  for(let i=0; i<time_selected.length; i++){
+		    if (time_selected[i].classList.contains("selected")){
+		    	time_selected[i].classList.remove("selected")
+		    }
+		  }
+		    e.target.classList.add("selected");
+		   
+		  }
+	});
+	
+	</script>
 </body>
 </html>
