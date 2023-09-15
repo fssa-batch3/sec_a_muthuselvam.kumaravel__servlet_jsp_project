@@ -248,7 +248,15 @@ input[type=text]::placeholder {
 			<div class="contentbx">
 			<% String companyTitle = company.getCompanyTitle();%>
 				<h3><%=companyTitle%></h3>
-				<a href="booking.jsp?title=<%=companyTitle%> <% session.setAttribute("currentCompany", companyTitle);%>" class="freshworks">Book</a>
+				<a
+				 <% String loggedInEmail4 = (String) session.getAttribute("loggedInEmail"); 
+				 	if(loggedInEmail4.contains(companyTitle))	{	%>
+				 href="booking.jsp?title=<%=companyTitle%> <% session.setAttribute("currentCompany", companyTitle);%>" 
+				 class="freshworks">Book 
+				 <% } else { %> 
+				  class="freshworks">Not Available
+				  <%} %> 
+				  </a>
 			</div>
 			</div>
 			<%
