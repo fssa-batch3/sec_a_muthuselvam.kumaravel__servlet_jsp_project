@@ -57,20 +57,5 @@ container.addEventListener("click", (e) => {
 // Define the index of the seat you want to close (e.g., 4 for the 5th seat)
 
 
-let confirm_btn = document.getElementById("confirm")
-confirm_btn.addEventListener("click", function(event){
- for(let i=0; i<seats_selected.length; i++){
-  if (seats_selected[i].classList.contains("selected")){
-    seats_selected[i].classList.remove("selected")
-    seats_selected[i].classList.add("sold")
-  }
-}
-window.location.href = "../pages/finalconfirmation.html"
-  }
-)
-
-
-
-
 
 

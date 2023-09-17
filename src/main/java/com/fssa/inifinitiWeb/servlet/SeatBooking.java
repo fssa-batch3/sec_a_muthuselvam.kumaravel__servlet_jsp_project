@@ -46,7 +46,8 @@ public class SeatBooking extends HttpServlet {
 		System.out.println(time);
 		String date = (String)session.getAttribute("date");
 		System.out.println(date);
-		String company = request.getParameter("company");
+		String company = (String)session.getAttribute("currentCompany");
+		System.out.println(company);
 		ShuttleService shuttleService = new ShuttleService();
 		BookingService bookingService = new BookingService();
 		Shuttle shuttle = new Shuttle();
@@ -54,6 +55,8 @@ public class SeatBooking extends HttpServlet {
 		try {
 		shuttle = shuttleService.readIdByShuttleTimeAndDateAndCompanyName(date, time, company);
 		System.out.println(shuttle.getShuttleId());
+		 HttpSession session2 = request.getSession(false);
+    	 session2.setAttribute("shuttleId", shuttle.getShuttleId());
 		 seats  = bookingService.readSeatNumByshuttleId(shuttle.getShuttleId());
 		 request.setAttribute("seatList", seats);
 		} catch (ServiceException e) {
@@ -137,6 +140,7 @@ public class SeatBooking extends HttpServlet {
         System.out.println("date: " + date);
         HttpSession session = request.getSession(false);
         session.setAttribute("date", date);
+        session.setAttribute("destination", destination);
         // You can also send a response back to the client if needed
        
     }

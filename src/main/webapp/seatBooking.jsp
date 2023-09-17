@@ -99,6 +99,59 @@
     </script>
 
 <% } %>
+
+<%  HttpSession session5 = request.getSession(false); %>
+
+<script>
+
+
+let confirm_btn = document.getElementById("confirm")
+confirm_btn.addEventListener("click", function(event){
+	event.preventDefault();
+	registerBooking();
+  }
+)
+
+function createBookingObjectFromForm() {
+	let seatNum = document.getElementById("count").innerHTML;
+	 let  email = '<%= (String) session5.getAttribute("loggedInEmail") %>';
+	 let destination = '<%= (String) session5.getAttribute("destination") %>';
+	let shuttleId = '<%= (int) session5.getAttribute("shuttleId") %>';
+	
+	let booking = {
+			seatNum : seatNum ,
+			email: email,
+			destination : destination , 
+			shuttleId: shuttleId,
+	}
+  return booking;
+}
+
+function registerBooking() {
+  let booking = createBookingObjectFromForm();
+
+  // Make a POST request to your servlet
+  fetch("RegisterBooking", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(booking), // Send the booking object as JSON data
+  })
+    .then((response) => {
+      if (response.ok) {
+        // Handle the successful response from the servlet, if needed
+        console.log("Booking successful");
+      } else {
+        throw new Error("Network response was not ok.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+</script>
   <script src="./Assests/js/seatbooking.js"></script>
   </body>
 </html>
