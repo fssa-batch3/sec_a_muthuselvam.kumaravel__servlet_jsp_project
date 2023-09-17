@@ -1,6 +1,7 @@
 <%@ page import="com.fssa.inifiniti.services.*"%>
 <%@ page import="com.fssa.inifiniti.model.*"%>
-<%@ page import="java.util.List"%>
+<%@ page import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +17,10 @@
 	
 	UserService userService = new UserService();
 	User user = userService.getUserByEmail(loggedInEmail);
+	
+	String companyName = request.getParameter("title");
 %>
-	<form id="231190591447457" action="Booking" method="post">
+	<form id="231190591447457" action="SeatBooking?company=<%= companyName %>" method="post">
 	
 		<div id="main">
 			<div id="main_2">
@@ -32,10 +35,10 @@
 				</label>
 
 				<div id="name">
-					<input type="text" id="first_29" value="<%= user.getFirstName() %>"  readonly><label
+					<input type="text" id="first_29" name="firstname" value="<%= user.getFirstName() %>"  readonly><label
 						id="sublabel_8_first" style="min-height: 13px"  >First Name</label>
 					<div id="last_name">
-						<input type="text" id="last_29" value="<%= user.getLastName() %>" readonly > <label
+						<input type="text" id="last_29" value="<%= user.getLastName() %>" readonly  > <label
 							id="sublabel_8_first" style="min-height: 13px">Last Name</label>
 					</div>
 				</div>
@@ -45,7 +48,7 @@
 				<label id="label_6"> E-mail<span>*</span>
 				</label>
 				<div id="cid_6">
-					<input type="email" id="input_30" value="<%= loggedInEmail %>" readonly>
+					<input type="email" id="input_30" name="email" value="<%= loggedInEmail %>" readonly>
 				</div>
 			</div>
 			<div id="phone">
@@ -59,8 +62,8 @@
 				<label id="label_6"> Destination <span>*</span>
 				</label>
 				<div id="cid_7">
-				<select id="date">
-						<option hidden disabled selected value></option>
+				<select id="date" class="destination" name="destination">
+						<option  selected value="taramani">Taramani</option>
 					</select>
 					</div>
 			</div>
@@ -68,12 +71,29 @@
 				<label id="label_6">Departure Date/Time <span>*</span>
 				</label>
 				<div id="cid_7">
-					<select id="date">
-						<option hidden disabled selected value></option>
+					<select id="date" name="date">
+					 <% 
+
+	ShuttleService shuttleService2  = new ShuttleService();
+	List<Shuttle> shuttleList2 = shuttleService2.readAllTime();
+	 HashSet<String> hashSet = new HashSet<>();
+	for (Shuttle i : shuttleList2){
+		hashSet.add(i.getDate());
+	}
+	for (String i : hashSet){
+		
+	
+    	%>
+						<option  selected value="<%= i%>" ><%= i %></option>
+							<%
+	}
+    
+    
+    %>
 					</select> <label class="date">Date</label>
 				</div>
 				<div id="cid_7">
-				<div class="time_slot">
+				<div class="time_slot" >
 					 <% 
 
 	ShuttleService shuttleService  = new ShuttleService();
@@ -81,7 +101,7 @@
 	
 	for (Shuttle i : shuttleList){
     	%>
-					<div class="time" id="<%= i.getTime() %>" >
+					<div class="time" id="<%= i.getTime() %>"  onclick="removeDisabled()" >
 							
 												<%= i.getTime() %>
 											
@@ -106,21 +126,62 @@
 
 			<div id="cid_2">
 
-				<button id="input_2" type="submit">Submit</button>
+				<button id="input_2" type="submit" disabled>Submit</button>
 			</div>
-
-
-
-
 		</div>
-
-
-
-
-
 	</form>
-	<!--   <script src="./Assests/js/booking.js"></script>-->
+	 
 	<script type="text/javascript">
+	
+    function preventBack() {
+        window.history.forward(); 
+    }
+      
+    setTimeout("preventBack()", 0);
+      
+    window.onunload = function () { null };
+	
+	document.getElementById("231190591447457").addEventListener("submit", function (event) {
+		 // Prevent the default form submission
+
+		  // Get the value from the div element
+		  let div = document.querySelector(".time.selected").id;
+	
+		  // Prepare the data to send to the servlet (you can use JSON, FormData, or any suitable format)
+		  const data = {
+		    divValue: div
+		  };
+
+		  // Make an AJAX request to the servlet
+		  fetch("/inifinitiWeb/SeatBooking", {
+		    method: "POST",
+		    headers: {
+		      "Content-Type": "application/json" // Adjust the content type as needed
+		    },
+		    body: JSON.stringify(data) // Convert data to JSON format
+		  })
+		    .then(response => {
+		      // Handle the response from the servlet if needed
+		      if (response.ok) {
+		        return response.text(); // Read the response body
+		      } else {
+		        throw new Error("Network response was not ok.");
+		      }
+		    })
+		    .then(responseText => {
+		      // Handle the responseText from the servlet if needed
+		      console.log(responseText);
+		    })
+		    .catch(error => {
+		      console.error("Error:", error);
+		    });
+		});
+	
+	function removeDisabled(){
+		const myButton = document.getElementById("input_2");
+		myButton.disabled = false;	
+	}
+	
 	const slots = document.querySelector(".time_slot");
 	slots.addEventListener("click", (e) => {
 		let time_selected = document.querySelectorAll('.time.selected');

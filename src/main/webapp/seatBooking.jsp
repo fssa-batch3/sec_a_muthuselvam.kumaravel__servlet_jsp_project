@@ -1,3 +1,6 @@
+<%@ page import="com.fssa.inifiniti.services.*"%>
+<%@ page import="com.fssa.inifiniti.model.*"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,8 +12,8 @@
   </head>
   <body>
     
-    
-
+   
+  
 
     <div class="movie-container">
       
@@ -33,7 +36,14 @@
 
     <h2>Cab facing this side</h2>
     <h3>Selected Time Slot</h3>
-    <h3 id="time_slot"></h3>
+    <h3 id="time_slot">  
+    
+    <% HttpSession session2 = request.getSession(false);
+      String time = (String) session2.getAttribute("value");
+    %>
+    
+    <%= time %>
+    </h3>
     <div class="container">
       
 
@@ -66,6 +76,29 @@
       You have selected seat number  <span id="count">0</span> <span class="confirm"> <a href="" id="confirm">Confirm</a> </span>
     </p>
   
-    <script src="../Assests/js/seatbooking.js"></script>
+   <% 
+    
+    List<Integer> seatList = (List<Integer>) request.getAttribute("seatList");
+    
+    for (Integer item : seatList) {
+      
+    	System.out.println(item);
+    %>
+    
+     <script type="text/javascript">
+     const allSeats = document.querySelectorAll('.seat');
+     const seatIndexToClose = <%= item %>;
+  // Check if the seatIndexToClose is within the valid range
+  if (seatIndexToClose >= 0 && seatIndexToClose <8) {
+    // Add the "sold" class to close the seat
+    allSeats[seatIndexToClose+3].classList.add('sold');
+  } else {
+    console.log(`Invalid seat index: ${seatIndexToClose}`);
+  }
+
+    </script>
+
+<% } %>
+  <script src="./Assests/js/seatbooking.js"></script>
   </body>
 </html>

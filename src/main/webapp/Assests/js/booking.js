@@ -1,5 +1,5 @@
 
-
+/*
 let date = new Date()
 let day = date.getDate();
 let month = date.getMonth()+1;
@@ -135,3 +135,7 @@ const form = document.getElementById("231190591447457");
         window.location.href = "../pages/afterbooking.html";
 
       });
+      
+      */
+	 
+	 
