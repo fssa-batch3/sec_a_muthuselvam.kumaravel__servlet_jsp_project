@@ -65,18 +65,11 @@
         <div class="seat"></div>
         
       </div>
-      
-     
-      
-     
-      
-    </div>
-
-    <p class="text">
-      You have selected seat number  <span id="count">0</span> <span class="confirm"> <a href="" id="confirm">Confirm</a> </span>
-    </p>
-  
-   <% 
+      <script>
+      let allSeats = document.querySelectorAll('.seat');
+      console.log(allSeats);
+      </script>
+     <% 
     
     List<Integer> seatList = (List<Integer>) request.getAttribute("seatList");
     
@@ -86,19 +79,20 @@
     %>
     
      <script type="text/javascript">
-     const allSeats = document.querySelectorAll('.seat');
-     const seatIndexToClose = <%= item %>;
-  // Check if the seatIndexToClose is within the valid range
-  if (seatIndexToClose >= 0 && seatIndexToClose <8) {
-    // Add the "sold" class to close the seat
-    allSeats[seatIndexToClose+3].classList.add('sold');
-  } else {
-    console.log(`Invalid seat index: ${seatIndexToClose}`);
-  }
-
+    allSeats[<%= item %>+ 2 ].classList.add('sold');
     </script>
 
 <% } %>
+      
+     
+      
+    </div>
+
+    <p class="text">
+      You have selected seat number  <span id="count">0</span> <span class="confirm"> <a href="" id="confirm">Confirm</a> </span>
+    </p>
+  
+   
 
 <%  HttpSession session5 = request.getSession(false); %>
 

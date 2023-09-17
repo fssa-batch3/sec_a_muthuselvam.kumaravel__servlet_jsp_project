@@ -298,8 +298,8 @@ border: 1px solid #e1e2e8;
 }
 
 .time{
-    border: 1px solid #999;
-    color: #4abd5d;
+   
+    
     padding: 4px;
     border-radius: 4px;
     width: 129px;
@@ -343,10 +343,8 @@ a {
     }
     
   .time.selected{
-		background-color: #999;
-		color: #fff;
+		opacity: 0.6;
 	}
 	.time:hover{
-		background-color: #999;
-		color: #fff;
+		opacity: 0.6;
 	}

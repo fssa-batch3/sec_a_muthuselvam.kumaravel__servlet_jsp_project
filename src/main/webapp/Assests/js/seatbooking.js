@@ -14,7 +14,7 @@ const count = document.getElementById("count");
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll(".row .seat.selected");
 
-  const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat)+1);
+  const seatsIndex = [...selectedSeats].map((seat) => [...seats_selected].indexOf(seat)+1);
 
   localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
 

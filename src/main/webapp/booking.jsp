@@ -9,8 +9,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Booking Form</title>
 <link rel="stylesheet" href="./Assests/css/booking.css" />
+<style>
+ #cover-spin {
+    position:fixed;
+    width:100%;
+    left:0;right:0;top:0;bottom:0;
+    background-color: rgba(255,255,255,0.7);
+    z-index:9999;
+    display:none;
+}
+
+@-webkit-keyframes spin {
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(360deg);}
+}
+
+@keyframes spin {
+	from {transform:rotate(0deg);}
+	to {transform:rotate(360deg);}
+}
+
+#cover-spin::after {
+    content:'';
+    display:block;
+    position:absolute;
+    left:48%;top:40%;
+    width:100px;height:100px;
+    border-style:solid;
+    border-color:#f9004d;
+    border-top-color:transparent;
+    border-width: 10px;
+    border-radius:50%;
+    -webkit-animation: spin .8s linear infinite;
+    animation: spin .8s linear infinite;
+}
+
+</style>
 </head>
 <body>
+<!-- HTML structure for the loading screen -->
+<div id="cover-spin"></div>
+
+<!-- CSS styles for the loading screen -->
+
 
 <%
 	String loggedInEmail = (String) session.getAttribute("loggedInEmail");
@@ -71,7 +112,8 @@
 				<label id="label_6">Departure Date/Time <span>*</span>
 				</label>
 				<div id="cid_7">
-					<select id="date" name="date">
+					<select id="dateSelection" name="date">
+					<option value="" hidden selected disabled></option>
 					 <% 
 
 	ShuttleService shuttleService2  = new ShuttleService();
@@ -84,7 +126,7 @@
 		
 	
     	%>
-						<option  selected value="<%= i%>" ><%= i %></option>
+						<option  value="<%= i%>" ><%= i %></option>
 							<%
 	}
     
@@ -94,23 +136,7 @@
 				</div>
 				<div id="cid_7">
 				<div class="time_slot" >
-					 <% 
-
-	ShuttleService shuttleService  = new ShuttleService();
-	List<Shuttle> shuttleList = shuttleService.readAllTime();
-	
-	for (Shuttle i : shuttleList){
-    	%>
-					<div class="time" id="<%= i.getTime() %>"  onclick="removeDisabled()" >
-							
-												<%= i.getTime() %>
-											
-					</div>
-					<%
-	}
-    
-    
-    %>
+					
 					</div>
 					 <label class="hour">Hour Minutes</label>
 					
@@ -132,6 +158,59 @@
 	</form>
 	 
 	<script type="text/javascript">
+	function showLoadingScreen() {
+		  document.querySelector('#cover-spin').style.display = 'block';
+		}
+
+		// Hide the loading screen
+		function hideLoadingScreen() {
+		  document.querySelector('#cover-spin').style.display = 'none';
+		}
+	
+	 document.getElementById('dateSelection').addEventListener('change', function () {
+		 showLoadingScreen();
+		    const selectedDate = this.value;
+		    var company = '<%= session.getAttribute("currentCompany") %>';
+		    console.log(company);
+		    const timeSelect = document.querySelector('.time_slot');
+		    timeSelect.innerHTML = '';
+		    fetch('TimeSelector?date=' + selectedDate +'&company=' + company)
+		      .then(response => response.json())
+		      .then(data => {
+		    	  data.times.forEach(item => {
+		          const div = document.createElement('div');
+		          div.setAttribute("class" , "time");
+		         div.setAttribute ("id" , item.time);
+		        div.setAttribute("onclick" , "removeDisabled()");
+		          div.textContent = item.time;
+		          const bookedSeats = item.bookedSeats;
+		          
+		          // Here, you can use the `bookedSeats` value as needed
+		          // For example, you can change the div's background color based on the number of booked seats
+		          if (bookedSeats === 0) {
+		            div.style.border = "1px solid #18bd5b"; 
+		            div.style.backgroundColor = " #18bd5b"; 
+		            div.style.color = " #FFF";
+		          } else if (bookedSeats >=1 && bookedSeats <=3) {
+		            div.style.border = " 1px solid #FFCC00"; 
+		            div.style.backgroundColor = " #FFCC00"; 
+		            div.style.color = "#FFF"; 
+		          } else if (bookedSeats >=4 && bookedSeats <=6){
+		            div.style.border = " 1px solid #FF5733 "; 
+		            div.style.backgroundColor = " #FF5733"; 
+		            div.style.color = "#FFF";
+		          } else {
+		        	  div.style.border = " 1px solid #D0342C "; 
+			            div.style.color = "#D0342C";
+		          }
+		          timeSelect.appendChild(div);
+    });
+		    	  hideLoadingScreen();
+		      })
+		      .catch(error => {
+		        console.error('Error:', error);
+		      }); 
+		  });
 	
     function preventBack() {
         window.history.forward(); 
