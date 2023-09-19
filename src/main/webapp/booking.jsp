@@ -47,12 +47,7 @@
 </style>
 </head>
 <body>
-<!-- HTML structure for the loading screen -->
 <div id="cover-spin"></div>
-
-<!-- CSS styles for the loading screen -->
-
-
 <%
 	String loggedInEmail = (String) session.getAttribute("loggedInEmail");
 	
@@ -212,43 +207,30 @@
 		      }); 
 		  });
 	
-    function preventBack() {
-        window.history.forward(); 
-    }
-      
-    setTimeout("preventBack()", 0);
-      
-    window.onunload = function () { null };
+    
 	
 	document.getElementById("231190591447457").addEventListener("submit", function (event) {
-		 // Prevent the default form submission
-
-		  // Get the value from the div element
+		showLoadingScreen();
 		  let div = document.querySelector(".time.selected").id;
-	
-		  // Prepare the data to send to the servlet (you can use JSON, FormData, or any suitable format)
 		  const data = {
 		    divValue: div
 		  };
-
-		  // Make an AJAX request to the servlet
 		  fetch("/inifinitiWeb/SeatBooking", {
 		    method: "POST",
 		    headers: {
-		      "Content-Type": "application/json" // Adjust the content type as needed
+		      "Content-Type": "application/json" 
 		    },
-		    body: JSON.stringify(data) // Convert data to JSON format
+		    body: JSON.stringify(data)
 		  })
 		    .then(response => {
-		      // Handle the response from the servlet if needed
 		      if (response.ok) {
-		        return response.text(); // Read the response body
+		    	  hideLoadingScreen();
+		        return response.text(); 
 		      } else {
 		        throw new Error("Network response was not ok.");
 		      }
 		    })
 		    .then(responseText => {
-		      // Handle the responseText from the servlet if needed
 		      console.log(responseText);
 		    })
 		    .catch(error => {

@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.fssa.inifiniti.model.*;
 import com.fssa.inifiniti.services.*;
 import com.fssa.inifiniti.services.exceptions.ServiceException;
@@ -28,7 +30,8 @@ public class GetAllBookingsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<Booking> booking = new ArrayList<Booking> ();
-		String email = request.getParameter("email");
+		HttpSession session = request.getSession(false);
+		String email = (String) session.getAttribute("loggedInEmail");
 		BookingService bookingService =  new BookingService();
 		Booking bookingObj = new Booking();
 		bookingObj.setEmail(email);
@@ -36,7 +39,7 @@ public class GetAllBookingsServlet extends HttpServlet {
 		try {
 			booking = bookingService.readBookingByUser(bookingObj);
 			request.setAttribute("BOOKINGS_LIST", booking);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("bookingList.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("history.jsp");
 			dispatcher.forward(request, response);
 		} catch (ServiceException e) {
 			String msg = e.getMessage();

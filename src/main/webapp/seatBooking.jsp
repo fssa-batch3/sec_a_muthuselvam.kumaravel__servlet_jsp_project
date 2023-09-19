@@ -10,10 +10,46 @@
     <link rel="stylesheet" href="./Assests/css/seatbooking.css" />
     <title>Seat Booking</title>
   </head>
+  <style>
+ #cover-spin {
+    position:fixed;
+    width:100%;
+    left:0;right:0;top:0;bottom:0;
+    background-color: rgba(255,255,255,0.7);
+    z-index:9999;
+    display:none;
+}
+
+@-webkit-keyframes spin {
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(360deg);}
+}
+
+@keyframes spin {
+	from {transform:rotate(0deg);}
+	to {transform:rotate(360deg);}
+}
+
+#cover-spin::after {
+    content:'';
+    display:block;
+    position:absolute;
+    left:48%;top:40%;
+    width:100px;height:100px;
+    border-style:solid;
+    border-color:#f9004d;
+    border-top-color:transparent;
+    border-width: 10px;
+    border-radius:50%;
+    -webkit-animation: spin .8s linear infinite;
+    animation: spin .8s linear infinite;
+}
+
+</style>
   <body>
     
    
-  
+  <div id="cover-spin"></div>
 
     <div class="movie-container">
       
@@ -98,10 +134,27 @@
 
 <script>
 
+function showLoadingScreen() {
+	  document.querySelector('#cover-spin').style.display = 'block';
+	}
+
+	// Hide the loading screen
+	function hideLoadingScreen() {
+	  document.querySelector('#cover-spin').style.display = 'none';
+	}
+	
+function preventBack() {
+    window.history.forward(); 
+}
+  
+setTimeout("preventBack()", 0);
+  
+window.onunload = function () { null };
 
 let confirm_btn = document.getElementById("confirm")
 confirm_btn.addEventListener("click", function(event){
 	event.preventDefault();
+	 showLoadingScreen();
 	registerBooking();
   }
 )
@@ -123,19 +176,17 @@ function createBookingObjectFromForm() {
 
 function registerBooking() {
   let booking = createBookingObjectFromForm();
-
-  // Make a POST request to your servlet
   fetch("RegisterBooking", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(booking), // Send the booking object as JSON data
+    body: JSON.stringify(booking),
   })
     .then((response) => {
       if (response.ok) {
-        // Handle the successful response from the servlet, if needed
-        console.log("Booking successful");
+    	  hideLoadingScreen();
+       window.location.href="GetAllBookingsServlet";
       } else {
         throw new Error("Network response was not ok.");
       }

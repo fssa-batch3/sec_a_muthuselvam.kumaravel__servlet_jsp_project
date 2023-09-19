@@ -52,7 +52,7 @@
       <% } else if (bookingList.isEmpty() == true){ %>
        onclick="toggle_6()"
       <% } else {%>
-          href="bookingList.jsp"
+          href="GetAllBookingsServlet"
           <%} %>>History</a></li>
           <li><a href="#faq-1">FAQ</a></li>
           <li>
