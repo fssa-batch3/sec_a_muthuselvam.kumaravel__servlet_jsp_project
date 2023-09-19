@@ -42,14 +42,6 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		PrintWriter out = response.getWriter();
-		
-		
-
-		
-	//	User user1 = new User("muthu","ms@gmail.com.com","Muthu@456");
-	//	UserService  UserService = new UserService();
-		
-	//	users.add(user1);
 		try {
 			UserService.loginUser(email,password);
 			HttpSession session = request.getSession();
@@ -62,36 +54,6 @@ public class LoginServlet extends HttpServlet {
 			out.print(e.getMessage());
 			
 		}
-//		if(email == null || "".equals(email)) {
-//			out.println("Invalid Email");
-//			response.sendRedirect("login.jsp?errorMessage=Invalid Email");
-//		}
-//		
-//		else if(password == null || "".equals(password) || password.length() < 6) {
-//			response.sendRedirect("login.jsp?errorMessage=Invalid Password");	
-//		} else {
-//			out.println("Email and password is valid");
-//			HttpSession session = request.getSession();
-//			session.setAttribute("loggedInEmail", email);
-//			response.sendRedirect("home.jsp");	
-//		}
-//		try {
-//			if(loginService.loginUser(email, password)) {
-//				out.println("Login successful");
-//				//response.sendRedirect("home.html");
-//				//RequestDispatcher dispatcher = request.getRequestDispatcher("home.html");
-//				//dispatcher.forward(request, response);
-//			}
-//		} catch (ServiceException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			out.println(e.getMessage());
-//		} 
-//		
-		
-		
-		
-		
 	}
 
 }

@@ -130,9 +130,28 @@
 					</select> <label class="date">Date</label>
 				</div>
 				<div id="cid_7">
+				<div class="legends-container">
+				<div class="times-legend">
+				<div class="legend-icon"></div>
+				<div class="legend-text">Available</div>
+				</div>
+				<div class="times-legend">
+				<div class="legend-icon fast"></div>
+				<div class="legend-text">Fast Filling</div>
+				</div>
+				<div class="times-legend">
+				<div class="legend-icon almost"></div>
+				<div class="legend-text">Almost Full</div>
+				</div>
+				<div class="times-legend">
+				<div class="legend-icon full"></div>
+				<div class="legend-text">Fully Booked</div>
+				</div>
+				</div>
 				<div class="time_slot" >
 					
 					</div>
+					
 					 <label class="hour">Hour Minutes</label>
 					
 					
@@ -164,6 +183,7 @@
 	
 	 document.getElementById('dateSelection').addEventListener('change', function () {
 		 showLoadingScreen();
+		 document.querySelector('.legends-container ').style.visibility = 'visible';
 		    const selectedDate = this.value;
 		    var company = '<%= session.getAttribute("currentCompany") %>';
 		    console.log(company);
@@ -196,7 +216,8 @@
 		            div.style.color = "#FFF";
 		          } else {
 		        	  div.style.border = " 1px solid #D0342C "; 
-			            div.style.color = "#D0342C";
+		        	  div.style.backgroundColor = " #D0342C"; 
+			            div.style.color = "#FFF";
 		          }
 		          timeSelect.appendChild(div);
     });
