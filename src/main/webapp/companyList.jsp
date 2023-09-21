@@ -7,7 +7,6 @@
  <%@ page import="java.util.List"%>
  <%@ page import="java.util.ArrayList"%>
 <%@ page  import="java.io.PrintWriter"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +32,6 @@
       <script type="text/javascript"> 
       Notify.error("<%= errMsg %>");
       </script>	
-    	
     	<%
     }
     %>

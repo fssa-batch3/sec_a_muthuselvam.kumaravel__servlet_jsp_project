@@ -74,7 +74,7 @@
 					<input type="text" id="first_29" name="firstname" value="<%= user.getFirstName() %>"  readonly><label
 						id="sublabel_8_first" style="min-height: 13px"  >First Name</label>
 					<div id="last_name">
-						<input type="text" id="last_29" value="<%= user.getLastName() %>" readonly  > <label
+						<input type="text"  id="last_29" value="<%= user.getLastName() %>" readonly  > <label
 							id="sublabel_8_first" style="min-height: 13px">Last Name</label>
 					</div>
 				</div>
