@@ -38,6 +38,7 @@ container.addEventListener("click", (e) => {
     e.target.classList.contains("seat") &&
     !e.target.classList.contains("sold") 
   ) {
+	  removeDisable();
   for(let i=0; i<seats_selected.length; i++){
     if (seats_selected[i].classList.contains("selected")){
       seats_selected[i].classList.remove("selected")
@@ -51,6 +52,11 @@ container.addEventListener("click", (e) => {
 
   
 });
+
+function removeDisable() {
+  let element = document.getElementById("confirm");
+  element.classList.remove("disable");
+}
 
 
 

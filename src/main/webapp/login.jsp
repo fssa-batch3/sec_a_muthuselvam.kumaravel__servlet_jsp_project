@@ -448,7 +448,13 @@ form div input {
 	 <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"> </script>
   </head>
   <body>
-    <div class="container">
+  <%
+String errorOccurredParam =  request.getParameter("errorOccurred");
+  boolean error = Boolean.parseBoolean(errorOccurredParam);
+%>
+    <div class="container <% if(error){ %>
+    	sign-up-mode
+  <% } %>">
       <div class="forms-container">
         <div class="signin-signup">
           <!-- log in -->

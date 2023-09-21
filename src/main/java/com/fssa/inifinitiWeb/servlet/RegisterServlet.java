@@ -54,8 +54,7 @@ public class RegisterServlet extends HttpServlet {
 			response.sendRedirect("login.jsp?successMsg=Registration success");
 		} catch (ServiceException e) {
 			String msg = e.getMessage();
-			//String[] error = msg.split(":");
-			response.sendRedirect("login.jsp?error="+msg);
+			response.sendRedirect("login.jsp?error="+msg+"&errorOccurred=true");
 			out.print(e.getMessage());
 		}
 		

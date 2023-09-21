@@ -11,6 +11,10 @@
     <title>Seat Booking</title>
   </head>
   <style>
+  
+  .disable{
+  visibility: hidden;
+  }
  #cover-spin {
     position:fixed;
     width:100%;
@@ -125,7 +129,8 @@
     </div>
 
     <p class="text">
-      You have selected seat number  <span id="count">0</span> <span class="confirm"> <a href="" id="confirm">Confirm</a> </span>
+      You have selected seat number  <span id="count">0</span> <span class="confirm"> <a href="" id="confirm" class="disable" >Confirm</a> </span>
+      <span class="confirm"> <a href="index.jsp"  >Cancel</a> </span>
     </p>
   
    

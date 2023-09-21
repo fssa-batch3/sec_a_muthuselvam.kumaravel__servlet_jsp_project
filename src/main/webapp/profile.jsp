@@ -192,7 +192,7 @@ body {
 			History</a> <a href="#">Login History</a> <a href="#">Password</a> <a
 			href="#" id="delete">Delete</a>
 	</div>
-	<span> <a href="home.jsp"
+	<span> <a href="index.jsp"
 		style="font-size: 40px; cursor: pointer; margin-left: -370px; color: #000;">Back</a>
 	</span>
 	<div class="container-xl px-4 mt-4">

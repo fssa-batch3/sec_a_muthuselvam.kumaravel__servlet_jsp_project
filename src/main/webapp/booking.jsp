@@ -1,7 +1,7 @@
 <%@ page import="com.fssa.inifiniti.services.*"%>
 <%@ page import="com.fssa.inifiniti.model.*"%>
 <%@ page import="java.util.*"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,54 +10,69 @@
 <title>Booking Form</title>
 <link rel="stylesheet" href="./Assests/css/booking.css" />
 <style>
- #cover-spin {
-    position:fixed;
-    width:100%;
-    left:0;right:0;top:0;bottom:0;
-    background-color: rgba(255,255,255,0.7);
-    z-index:9999;
-    display:none;
+#cover-spin {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: rgba(255, 255, 255, 0.7);
+	z-index: 9999;
+	display: none;
 }
 
-@-webkit-keyframes spin {
-	from {-webkit-transform:rotate(0deg);}
-	to {-webkit-transform:rotate(360deg);}
+@
+-webkit-keyframes spin {
+	from {-webkit-transform: rotate(0deg);
 }
 
-@keyframes spin {
-	from {transform:rotate(0deg);}
-	to {transform:rotate(360deg);}
+to {
+	-webkit-transform: rotate(360deg);
 }
 
+}
+@
+keyframes spin {
+	from {transform: rotate(0deg);
+}
+
+to {
+	transform: rotate(360deg);
+}
+
+}
 #cover-spin::after {
-    content:'';
-    display:block;
-    position:absolute;
-    left:48%;top:40%;
-    width:100px;height:100px;
-    border-style:solid;
-    border-color:#f9004d;
-    border-top-color:transparent;
-    border-width: 10px;
-    border-radius:50%;
-    -webkit-animation: spin .8s linear infinite;
-    animation: spin .8s linear infinite;
+	content: '';
+	display: block;
+	position: absolute;
+	left: 48%;
+	top: 40%;
+	width: 100px;
+	height: 100px;
+	border-style: solid;
+	border-color: #f9004d;
+	border-top-color: transparent;
+	border-width: 10px;
+	border-radius: 50%;
+	-webkit-animation: spin .8s linear infinite;
+	animation: spin .8s linear infinite;
 }
-
 </style>
 </head>
 <body>
-<div id="cover-spin"></div>
-<%
+	<div id="cover-spin"></div>
+	<%
 	String loggedInEmail = (String) session.getAttribute("loggedInEmail");
-	
+
 	UserService userService = new UserService();
 	User user = userService.getUserByEmail(loggedInEmail);
-	
+
 	String companyName = request.getParameter("title");
-%>
-	<form id="231190591447457" action="SeatBooking?company=<%= companyName %>" method="post">
-	
+	%>
+	<form id="231190591447457"
+		action="SeatBooking?company=<%=companyName%>" method="post">
+
 		<div id="main">
 			<div id="main_2">
 				<h1 id="header_1">Reservation Form</h1>
@@ -71,11 +86,14 @@
 				</label>
 
 				<div id="name">
-					<input type="text" id="first_29" name="firstname" value="<%= user.getFirstName() %>"  readonly><label
-						id="sublabel_8_first" style="min-height: 13px"  >First Name</label>
+					<input type="text" id="first_29" name="firstname"
+						value="<%=user.getFirstName()%>" readonly><label
+						id="sublabel_8_first" style="min-height: 13px">First
+						Name</label>
 					<div id="last_name">
-						<input type="text"  id="last_29" value="<%= user.getLastName() %>" readonly  > <label
-							id="sublabel_8_first" style="min-height: 13px">Last Name</label>
+						<input type="text" id="last_29" value="<%=user.getLastName()%>"
+							readonly> <label id="sublabel_8_first"
+							style="min-height: 13px">Last Name</label>
 					</div>
 				</div>
 			</div>
@@ -84,77 +102,72 @@
 				<label id="label_6"> E-mail<span>*</span>
 				</label>
 				<div id="cid_6">
-					<input type="email" id="input_30" name="email" value="<%= loggedInEmail %>" readonly>
+					<input type="email" id="input_30" name="email"
+						value="<%=loggedInEmail%>" readonly>
 				</div>
 			</div>
 			<div id="phone">
 				<label id="label_6"> Phone Number<span>*</span>
 				</label>
 				<div id="cid_6">
-					<input type="number" id="input_31_full" value="<%= user.getPhoneNumber() %>"  readonly>
+					<input type="number" id="input_31_full"
+						value="<%=user.getPhoneNumber()%>" readonly>
 				</div>
 			</div>
 			<div id="phone">
 				<label id="label_6"> Destination <span>*</span>
 				</label>
 				<div id="cid_7">
-				<select id="date" class="destination" name="destination">
-						<option  selected value="taramani">Taramani</option>
+					<select id="date" class="destination" name="destination">
+						<option selected value="taramani">Taramani</option>
 					</select>
-					</div>
+				</div>
 			</div>
 			<div id="departure">
 				<label id="label_6">Departure Date/Time <span>*</span>
 				</label>
 				<div id="cid_7">
 					<select id="dateSelection" name="date">
-					<option value="" hidden selected disabled></option>
-					 <% 
-
-	ShuttleService shuttleService2  = new ShuttleService();
-	List<Shuttle> shuttleList2 = shuttleService2.readAllTime();
-	 HashSet<String> hashSet = new HashSet<>();
-	for (Shuttle i : shuttleList2){
-		hashSet.add(i.getDate());
-	}
-	for (String i : hashSet){
-		
-	
-    	%>
-						<option  value="<%= i%>" ><%= i %></option>
-							<%
-	}
-    
-    
-    %>
+						<option value="" hidden selected disabled></option>
+						<%
+						ShuttleService shuttleService2 = new ShuttleService();
+						List<Shuttle> shuttleList2 = shuttleService2.readAllTime();
+						HashSet<String> hashSet = new HashSet<>();
+						for (Shuttle i : shuttleList2) {
+							hashSet.add(i.getDate());
+						}
+						for (String i : hashSet) {
+						%>
+						<option value="<%=i%>"><%=i%></option>
+						<%
+						}
+						%>
 					</select> <label class="date">Date</label>
 				</div>
 				<div id="cid_7">
-				<div class="legends-container">
-				<div class="times-legend">
-				<div class="legend-icon"></div>
-				<div class="legend-text">Available</div>
-				</div>
-				<div class="times-legend">
-				<div class="legend-icon fast"></div>
-				<div class="legend-text">Fast Filling</div>
-				</div>
-				<div class="times-legend">
-				<div class="legend-icon almost"></div>
-				<div class="legend-text">Almost Full</div>
-				</div>
-				<div class="times-legend">
-				<div class="legend-icon full"></div>
-				<div class="legend-text">Fully Booked</div>
-				</div>
-				</div>
-				<div class="time_slot" >
-					
+					<div class="legends-container">
+						<div class="times-legend">
+							<div class="legend-icon"></div>
+							<div class="legend-text">Available</div>
+						</div>
+						<div class="times-legend">
+							<div class="legend-icon fast"></div>
+							<div class="legend-text">Fast Filling</div>
+						</div>
+						<div class="times-legend">
+							<div class="legend-icon almost"></div>
+							<div class="legend-text">Almost Full</div>
+						</div>
+						<div class="times-legend">
+							<div class="legend-icon full"></div>
+							<div class="legend-text">Fully Booked</div>
+						</div>
 					</div>
-					
-					 <label class="hour">Hour Minutes</label>
-					
-					
+					<div class="time_slot"></div>
+
+					<label class="hour">Hour Minutes</label>
+
+
 				</div>
 
 			</div>
@@ -170,79 +183,77 @@
 			</div>
 		</div>
 	</form>
-	 
 	<script type="text/javascript">
-	function showLoadingScreen() {
+		function showLoadingScreen() {
 		  document.querySelector('#cover-spin').style.display = 'block';
 		}
-
-		// Hide the loading screen
 		function hideLoadingScreen() {
 		  document.querySelector('#cover-spin').style.display = 'none';
 		}
-	
 	 document.getElementById('dateSelection').addEventListener('change', function () {
 		 showLoadingScreen();
 		 document.querySelector('.legends-container ').style.visibility = 'visible';
 		    const selectedDate = this.value;
-		    var company = '<%= session.getAttribute("currentCompany") %>';
+		    var company = '<%=session.getAttribute("currentCompany")%>';
 		    console.log(company);
 		    const timeSelect = document.querySelector('.time_slot');
 		    timeSelect.innerHTML = '';
+		    const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false }).slice(0, 5);
+		    const selectedDateParts = selectedDate.split('/');
+		    const formattedSelectedDate = `${selectedDateParts[2]}-${selectedDateParts[1]}-${selectedDateParts[0]}`;
+		    const today = new Date().toISOString().split('T')[0];
 		    fetch('TimeSelector?date=' + selectedDate +'&company=' + company)
 		      .then(response => response.json())
 		      .then(data => {
 		    	  data.times.forEach(item => {
+		    	  const isToday = formattedSelectedDate === today;
+		    	  if(!isToday && item.time > currentTime){
 		          const div = document.createElement('div');
 		          div.setAttribute("class" , "time");
 		         div.setAttribute ("id" , item.time);
 		        div.setAttribute("onclick" , "removeDisabled()");
 		          div.textContent = item.time;
 		          const bookedSeats = item.bookedSeats;
-		          
-		          // Here, you can use the `bookedSeats` value as needed
-		          // For example, you can change the div's background color based on the number of booked seats
 		          if (bookedSeats === 0) {
 		            div.style.border = "1px solid #18bd5b"; 
-		            div.style.backgroundColor = " #18bd5b"; 
-		            div.style.color = " #FFF";
+		            div.style.backgroundColor = "#18bd5b"; 
+		            div.style.color = "#FFF";
 		          } else if (bookedSeats >=1 && bookedSeats <=3) {
 		            div.style.border = " 1px solid #FFCC00"; 
-		            div.style.backgroundColor = " #FFCC00"; 
+		            div.style.backgroundColor = "#FFCC00"; 
 		            div.style.color = "#FFF"; 
 		          } else if (bookedSeats >=4 && bookedSeats <=6){
 		            div.style.border = " 1px solid #FF5733 "; 
-		            div.style.backgroundColor = " #FF5733"; 
+		            div.style.backgroundColor = "#FF5733"; 
 		            div.style.color = "#FFF";
 		          } else {
-		        	  div.style.border = " 1px solid #D0342C "; 
-		        	  div.style.backgroundColor = " #D0342C"; 
-			            div.style.color = "#FFF";
+		        	div.style.border = " 1px solid #D0342C "; 
+		        	div.style.backgroundColor = "#D0342C"; 
+			        div.style.color = "#FFF";
 		          }
 		          timeSelect.appendChild(div);
-    });
+		    		  }
+   					 });
 		    	  hideLoadingScreen();
-		      })
+		     		 })
 		      .catch(error => {
 		        console.error('Error:', error);
-		      }); 
+		      		 }); 
 		  });
 	
-    
-	
-	document.getElementById("231190591447457").addEventListener("submit", function (event) {
+		document.getElementById("231190591447457").addEventListener("submit", function (event) {
 		showLoadingScreen();
 		  let div = document.querySelector(".time.selected").id;
 		  const data = {
 		    divValue: div
-		  };
+		    };
 		  fetch("/inifinitiWeb/SeatBooking", {
 		    method: "POST",
 		    headers: {
 		      "Content-Type": "application/json" 
 		    },
 		    body: JSON.stringify(data)
-		  })
+		    })
 		    .then(response => {
 		      if (response.ok) {
 		    	  hideLoadingScreen();
@@ -257,7 +268,7 @@
 		    .catch(error => {
 		      console.error("Error:", error);
 		    });
-		});
+			});
 	
 	function removeDisabled(){
 		const myButton = document.getElementById("input_2");

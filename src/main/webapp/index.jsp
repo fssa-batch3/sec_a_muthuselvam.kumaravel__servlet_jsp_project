@@ -88,11 +88,7 @@
         </ul>
 
        <button class="btn">  <a
-         
-          class="book-now" 
-          
-          <% 
-         
+          class="book-now"<% 
           String loggedInEmail = (String) session.getAttribute("loggedInEmail");
        boolean hasNullValues = false;
           UserService userService = new UserService();
@@ -107,7 +103,6 @@
       <% } else { %>
           href="GetAllCompanyCardServlet"
           <% } %>
-          
           >Book Now</a>
         </button>
         
