@@ -156,15 +156,15 @@ label.light {
   
   <div class="col-12">
     <label for="inputAddress" class="form-label">Shuttle Date:</label>
-    <input type="text" name="shuttleDate" class="form-control" id="inputAddress"  placeholder="20/09/2023"  required>
+    <input type="text" name="shuttleDate"  pattern="\d{2}/\d{2}/\d{4}" title="Please enter a date in the format dd/mm/yyyy" class="form-control" id="inputAddress" placeholder="dd/mm/yyyy" required>
   </div>
   
   <div class="col-12">
     <label for="inputZip" class="form-label">Shuttle Time:</label>
-    <input type="text" name="shuttleTime" class="form-control" id="inputZip"   required>
+    <input type="text" name="shuttleTime" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" title="Please enter a time in the format hh:mm (e.g., 18:00)" class="form-control" id="inputZip" placeholder="hh:mm"  required>
   </div>
   <div class="col-4">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" id="submit-btn" class="btn btn-primary" disabled>Submit</button>
   </div>
 </form>
        
@@ -172,6 +172,71 @@ label.light {
      
        
       
-      
+      <script>
+  document.getElementById('inputAddress').addEventListener('blur', function () {
+    var inputDate = this.value;
+    var dateParts = inputDate.split('/');
+    var day = parseInt(dateParts[0], 10);
+    var month = parseInt(dateParts[1], 10) - 1;
+    var year = parseInt(dateParts[2], 10);
+    var selectedDate = new Date(year, month, day);
+    var currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); 
+    if (selectedDate < currentDate) {
+      alert('Please enter a current date or future date.');
+      this.value = ''; 
+    }
+  });
+  
+  
+  var dateInput = document.getElementById('inputAddress');
+  var timeInput = document.getElementById('inputZip');
+  var submitButton = document.getElementById('submit-btn'); // Assuming you have a button with an id "submitButton"
+
+ 
+
+  timeInput.addEventListener('blur', function () {
+    validateDateTime();
+  });
+
+  function validateDateTime() {
+    var inputDate = dateInput.value;
+    var inputTime = timeInput.value;
+
+    var dateParts = inputDate.split('/');
+    var day = parseInt(dateParts[0], 10);
+    var month = parseInt(dateParts[1], 10) - 1; // Month is 0-based
+    var year = parseInt(dateParts[2], 10);
+
+    var selectedDate = new Date(year, month, day);
+    var currentDate = new Date();
+
+    currentDate.setHours(0, 0, 0, 0); // Set time to midnight for date comparison
+
+    if (selectedDate < currentDate) {
+      alert('Please enter a future date.');
+      dateInput.value = ''; // Clear the date input field
+    } else if (selectedDate.getTime() === currentDate.getTime()) {
+    	var timeParts = inputTime.split(':');
+        var hours = parseInt(timeParts[0], 10);
+        var minutes = parseInt(timeParts[1], 10);
+        var currentTime = new Date();
+
+        if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+          alert('Please enter a valid time (hh:mm).');
+          timeInput.value = '';
+          submitButton.setAttribute('disabled', 'disabled');
+        } else if (hours < currentTime.getHours() || (hours === currentTime.getHours() && minutes <= currentTime.getMinutes())) {
+          alert('The selected time cannot be in the past for today.');
+          timeInput.value = ''; 
+          submitButton.setAttribute('disabled', 'disabled'); // Disable the button
+        } else {
+          submitButton.removeAttribute('disabled'); // Enable the button
+        }
+      } else {
+        submitButton.removeAttribute('disabled'); // Enable the button
+      }
+  }
+</script>
     </body>
 </html>

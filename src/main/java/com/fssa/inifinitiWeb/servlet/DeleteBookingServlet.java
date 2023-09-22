@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.fssa.inifiniti.services.*;
 import com.fssa.inifiniti.services.exceptions.ServiceException;
 
@@ -30,16 +32,16 @@ public class DeleteBookingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(false);
 		int bookingId = Integer.parseInt((String)request.getParameter("id"));
-		String email = request.getParameter("email");
 		BookingService bookingService = new BookingService();
 		try {
 			bookingService.deleteBookingByBookingId(bookingId);
-			response.sendRedirect("bookingList.jsp?email="+email);
+			response.sendRedirect("GetAllBookingsServlet");
 		} catch (ServiceException e) {
 			String msg = e.getMessage();
 			String[] error = msg.split(":");
-			response.sendRedirect("bookingList.jsp?error="+error[1]+"&email="+email);
+			response.sendRedirect("GetAllBookingsServlet?error="+error[1]);
 		}
 	}
 

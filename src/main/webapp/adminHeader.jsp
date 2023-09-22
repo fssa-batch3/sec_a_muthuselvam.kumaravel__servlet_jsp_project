@@ -15,7 +15,7 @@
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary"
 	data-bs-theme="dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="index.jsp">INIFINITI</a>
+		<a class="navbar-brand" href="login.jsp">INIFINITI</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -25,12 +25,13 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="home.jsp">Home</a></li>
+					aria-current="page" href="index.jsp"></a></li>
 			</ul>
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="admin.jsp">DashBoard</a></li>
+					aria-current="page" href="createCompany.jsp">Create Company</a></li>
 			</ul>
+			
 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
 					aria-current="page" href="login.jsp">Logout</a></li>

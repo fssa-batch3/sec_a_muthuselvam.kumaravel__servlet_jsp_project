@@ -48,8 +48,9 @@ public class EditCompanyServlet extends HttpServlet {
 			service.updateCompany(company);
 			response.sendRedirect("companyList.jsp");
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String msg = e.getMessage();
+			System.out.println(msg);
+			response.sendRedirect("editCompany.jsp?id="+id+"&title="+companyName+"&url="+companyLogo);
 		}
 	}
 

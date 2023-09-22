@@ -46,8 +46,9 @@ public class CreateCompanyServlet extends HttpServlet {
 			companyCardService.registerCompany(company);
 			response.sendRedirect("companyList.jsp");
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String msg = e.getMessage();
+			System.out.println(msg);
+			response.sendRedirect("companyList.jsp?error="+msg);
 		}
 	}
 

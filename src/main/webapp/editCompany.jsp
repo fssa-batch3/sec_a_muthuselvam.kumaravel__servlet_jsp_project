@@ -172,12 +172,12 @@ label.light {
 		<div class="col-12">
 			<label for="inputAddress" class="form-label">Company Name:</label> <input
 				type="text" class="form-control" id="inputAddress" value="<%=name%>"
-				placeholder="Freshworks" name="companyName" required>
+				placeholder="Freshworks"  pattern="[A-Za-z]+" title="Only alphabetic characters are allowed"  name="companyName" required>
 		</div>
 
 		<div class="col-12">
 			<label for="inputZip" class="form-label">Company Logo:</label> <input
-				type="text" class="form-control" id="inputZip" value="<%=url%>"
+				type="text" pattern="https://.*" title="Please enter a valid HTTPS link (e.g., https://example.com)" class="form-control" id="inputZip" value="<%=url%>"
 				name="companyLogo" required>
 		</div>
 		<div class="col-4">

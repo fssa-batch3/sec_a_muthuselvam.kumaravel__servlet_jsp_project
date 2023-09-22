@@ -21,27 +21,6 @@
 	z-index: 9999;
 	display: none;
 }
-
-@
--webkit-keyframes spin {
-	from {-webkit-transform: rotate(0deg);
-}
-
-to {
-	-webkit-transform: rotate(360deg);
-}
-
-}
-@
-keyframes spin {
-	from {transform: rotate(0deg);
-}
-
-to {
-	transform: rotate(360deg);
-}
-
-}
 #cover-spin::after {
 	content: '';
 	display: block;
@@ -58,6 +37,26 @@ to {
 	-webkit-animation: spin .8s linear infinite;
 	animation: spin .8s linear infinite;
 }
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+}
+
 </style>
 </head>
 <body>
@@ -200,14 +199,23 @@ to {
 		    timeSelect.innerHTML = '';
 		    const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false }).slice(0, 5);
 		    const selectedDateParts = selectedDate.split('/');
-		    const formattedSelectedDate = `${selectedDateParts[2]}-${selectedDateParts[1]}-${selectedDateParts[0]}`;
-		    const today = new Date().toISOString().split('T')[0];
+		    const selectedYear = parseInt(selectedDateParts[2], 10);
+		    const selectedMonth = parseInt(selectedDateParts[1], 10) - 1; // Month is 0-based in JavaScript
+		    const selectedDay = parseInt(selectedDateParts[0], 10);
+		    const selectedDateObj = new Date(selectedYear, selectedMonth, selectedDay);
+
+		    const today = new Date(); // Current date
+		    today.setHours(0, 0, 0, 0);
 		    fetch('TimeSelector?date=' + selectedDate +'&company=' + company)
 		      .then(response => response.json())
 		      .then(data => {
 		    	  data.times.forEach(item => {
-		    	  const isToday = formattedSelectedDate === today;
-		    	  if(!isToday && item.time > currentTime){
+		    	  let isToday = false;
+		    	  if (selectedDateObj.getTime() === today.getTime()) {
+		    		   isToday = true;
+		    		}
+		    	  console.log(isToday);
+		    	  if(isToday && item.time > currentTime){
 		          const div = document.createElement('div');
 		          div.setAttribute("class" , "time");
 		         div.setAttribute ("id" , item.time);
@@ -233,6 +241,33 @@ to {
 		          }
 		          timeSelect.appendChild(div);
 		    		  }
+		    	  
+		    	  if(isToday == false){
+			          const div = document.createElement('div');
+			          div.setAttribute("class" , "time");
+			         div.setAttribute ("id" , item.time);
+			        div.setAttribute("onclick" , "removeDisabled()");
+			          div.textContent = item.time;
+			          const bookedSeats = item.bookedSeats;
+			          if (bookedSeats === 0) {
+			            div.style.border = "1px solid #18bd5b"; 
+			            div.style.backgroundColor = "#18bd5b"; 
+			            div.style.color = "#FFF";
+			          } else if (bookedSeats >=1 && bookedSeats <=3) {
+			            div.style.border = " 1px solid #FFCC00"; 
+			            div.style.backgroundColor = "#FFCC00"; 
+			            div.style.color = "#FFF"; 
+			          } else if (bookedSeats >=4 && bookedSeats <=6){
+			            div.style.border = " 1px solid #FF5733 "; 
+			            div.style.backgroundColor = "#FF5733"; 
+			            div.style.color = "#FFF";
+			          } else {
+			        	div.style.border = " 1px solid #D0342C "; 
+			        	div.style.backgroundColor = "#D0342C"; 
+				        div.style.color = "#FFF";
+			          }
+			          timeSelect.appendChild(div);
+			    		  }
    					 });
 		    	  hideLoadingScreen();
 		     		 })
