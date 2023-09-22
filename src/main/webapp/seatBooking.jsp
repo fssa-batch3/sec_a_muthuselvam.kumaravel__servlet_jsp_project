@@ -73,6 +73,7 @@
         <small>Booked</small>
       </li>
     </ul>
+    
 
     <h2>Cab facing this side</h2>
     <h3>Selected Time Slot</h3>

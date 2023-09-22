@@ -37,7 +37,7 @@ public class DeleteBookingServlet extends HttpServlet {
 		BookingService bookingService = new BookingService();
 		try {
 			bookingService.deleteBookingByBookingId(bookingId);
-			response.sendRedirect("GetAllBookingsServlet");
+			response.sendRedirect("index.jsp");
 		} catch (ServiceException e) {
 			String msg = e.getMessage();
 			String[] error = msg.split(":");

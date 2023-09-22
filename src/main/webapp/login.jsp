@@ -476,11 +476,9 @@ String errorOccurredParam =  request.getParameter("errorOccurred");
                 type="password"
                 id="password"
                 placeholder="Password"
-                pattern="^\S{4,25}\S"
-                minlength="5"
+                minlength="3"
                 name="password"
                 maxlength="25"
-                
                 required
               />
               <i class="fa-solid fa-eye" id="eye"></i>
@@ -522,9 +520,9 @@ String errorOccurredParam =  request.getParameter("errorOccurred");
                 id="username_1"
                 name="username"
                 autocomplete="off"
-                pattern="[A-Za-z0-9]{1,16}"
+                pattern="[A-Za-z]+" title="Please enter a username with only alphabetic characters." 
                 placeholder="Username"
-                minlength="5"
+                minlength="4"
                 maxlength="25"
                 autofocus
                 required
@@ -539,7 +537,7 @@ String errorOccurredParam =  request.getParameter("errorOccurred");
                 id="email_1"
                 placeholder="Email"
                 pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-         
+         title="Please enter a valid email address (e.g., example@example.com)" 
                 required
               />
               <small>Error Message</small>
@@ -554,7 +552,8 @@ String errorOccurredParam =  request.getParameter("errorOccurred");
                 maxlength="25"
                 name="password"
                 oninput="strengthChecker()"
-                pattern="^\S{8,25}\S"
+                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{7,}$" 
+       title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit." 
 
                 required
               />
@@ -563,22 +562,7 @@ String errorOccurredParam =  request.getParameter("errorOccurred");
             </div>
             <div id="strength-bar" ></div>
 
-            <div class="input-field">
-              <input
-                id="password_2"
-                type="password"
-                placeholder="Confirm Password"
-                autocomplete="off"
-                minlength="8"
-                maxlength="25"
-                pattern="^\S{8,25}\S"
-               
-                required
-              />
-              <i class="fa-solid fa-eye" id="eye3"></i>
-
-              <small>Error Message</small>
-            </div>
+            
             <button class="btn" type="submit">Sign up</button>
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">

@@ -215,6 +215,17 @@ body {
 	<%
 	}
 	%>
+	<%
+	String err2 = request.getParameter("success");
+	if (err2 != null) {
+	%>
+	<script type="text/javascript">
+	Notify.success("<%=err2%>");
+    	</script>
+
+	<%
+	}
+	%>
 					
 					<div class="card-body">
 						<form id="form_pro" action="profile" method="post">

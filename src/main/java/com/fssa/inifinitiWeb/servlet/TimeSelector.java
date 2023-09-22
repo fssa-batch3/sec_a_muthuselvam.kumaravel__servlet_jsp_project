@@ -10,10 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.fssa.inifiniti.dao.BookingDAO;
+import com.fssa.inifiniti.dao.exceptions.DaoException;
 import com.fssa.inifiniti.model.Shuttle;
 import com.fssa.inifiniti.services.BookingService;
 import com.fssa.inifiniti.services.ShuttleService;
@@ -42,8 +45,12 @@ public class TimeSelector extends HttpServlet {
         String company = request.getParameter("company");
         BookingService bookingService = new BookingService();
         ShuttleService shuttleService = new ShuttleService();
+        BookingDAO booking = new BookingDAO();
         Shuttle shuttle = new Shuttle();
         List<String> availableTimes = null;
+        
+        HttpSession session = request.getSession(false);
+        String email = (String) session.getAttribute("loggedInEmail");
 
         try {
             availableTimes = shuttleService.readTimeByCompanyDate(company, selectedDate);
@@ -57,15 +64,18 @@ public class TimeSelector extends HttpServlet {
             jsonTimeSlot.put("time", i);
            
             int bookedSeats = 0;
+            boolean check = false;
 			try {
 				 shuttle = shuttleService.readIdByShuttleTimeAndDateAndCompanyName(selectedDate, i, company);
 				bookedSeats = bookingService.readRowCountByShuttleId(shuttle.getShuttleId());
-			} catch (ServiceException e) {
+				check = booking.checkExistingBookingInSmaeShuttle(shuttle.getShuttleId(), email);
+			} catch (ServiceException | DaoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
             // Include the bookedSeats property in the JSON object
+			jsonTimeSlot.put("check", check);
             jsonTimeSlot.put("bookedSeats", bookedSeats);
 
             jsonTimeSlots.add(jsonTimeSlot);

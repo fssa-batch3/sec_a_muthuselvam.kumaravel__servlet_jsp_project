@@ -63,10 +63,8 @@
 	<div id="cover-spin"></div>
 	<%
 	String loggedInEmail = (String) session.getAttribute("loggedInEmail");
-
 	UserService userService = new UserService();
 	User user = userService.getUserByEmail(loggedInEmail);
-
 	String companyName = request.getParameter("title");
 	%>
 	<form id="231190591447457"
@@ -200,11 +198,11 @@
 		    const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false }).slice(0, 5);
 		    const selectedDateParts = selectedDate.split('/');
 		    const selectedYear = parseInt(selectedDateParts[2], 10);
-		    const selectedMonth = parseInt(selectedDateParts[1], 10) - 1; // Month is 0-based in JavaScript
+		    const selectedMonth = parseInt(selectedDateParts[1], 10) - 1; 
 		    const selectedDay = parseInt(selectedDateParts[0], 10);
 		    const selectedDateObj = new Date(selectedYear, selectedMonth, selectedDay);
 
-		    const today = new Date(); // Current date
+		    const today = new Date(); 
 		    today.setHours(0, 0, 0, 0);
 		    fetch('TimeSelector?date=' + selectedDate +'&company=' + company)
 		      .then(response => response.json())
@@ -215,7 +213,7 @@
 		    		   isToday = true;
 		    		}
 		    	  console.log(isToday);
-		    	  if(isToday && item.time > currentTime){
+		    	  if(isToday && item.time > currentTime && item.check == false ){
 		          const div = document.createElement('div');
 		          div.setAttribute("class" , "time");
 		         div.setAttribute ("id" , item.time);
@@ -242,7 +240,7 @@
 		          timeSelect.appendChild(div);
 		    		  }
 		    	  
-		    	  if(isToday == false){
+		    	  if(isToday == false && item.check == false ){
 			          const div = document.createElement('div');
 			          div.setAttribute("class" , "time");
 			         div.setAttribute ("id" , item.time);
@@ -290,6 +288,7 @@
 		    body: JSON.stringify(data)
 		    })
 		    .then(response => {
+		    	console.log(response); 
 		      if (response.ok) {
 		    	  hideLoadingScreen();
 		        return response.text(); 

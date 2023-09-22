@@ -120,7 +120,7 @@
                 id="mail"
                 placeholder="Your ZIP / Postal Code" required
               />
-              <button class="submit"> <a href="./pages/company logo.html" class="next">  Next </a> </button>
+              <button class="submit"> <a href="login.jsp" class="next">  Next </a> </button>
             </form>
           </div>
           <br />
@@ -150,10 +150,10 @@
 
     <!-- ABOUT US / LEARN MORE -->
     <div class="popup" id="popup"><button id="close" onclick="toggle_2()" >&times;</button>
-      <h2>Please Login To Continue</h2><br> <button class="log_btn"> <a href="./pages/login.html" class="log_popup">Log In</a></button>
+      <h2>Please Login To Continue</h2><br> <button class="log_btn"> <a href="login.jsp" class="log_popup">Log In</a></button>
     </div>
     <div class="popup_2" id="popup_2"><button id="close" onclick="toggle_5()" >&times;</button>
-      <h2>Please Complete your Profile To Book</h2><br><button class="pro_btn"> <a href="./pages/profile.html" class="pro_popup">Profile</a></button>
+      <h2>Please Complete your Profile To Book</h2><br><button class="pro_btn"> <a href="profile.jsp" class="pro_popup">Profile</a></button>
     </div>
     <div class="popup_3" id="popup_3"><button id="close" onclick="toggle_7()" >&times;</button>
       <h2>Please Complete your First Booking</h2>

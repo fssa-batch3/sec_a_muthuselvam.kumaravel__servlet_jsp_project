@@ -58,7 +58,7 @@ public class ProfileServlet extends HttpServlet {
         
         try {
 			userService.updateUser(user);
-			response.sendRedirect("profile.jsp");
+			response.sendRedirect("profile.jsp?success=Successfully Updated");
 		} catch (ServiceException e) {
 			String msg = e.getMessage();
 			System.out.println(msg);
