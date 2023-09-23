@@ -353,11 +353,12 @@ a {
 }
 
 .time.selected {
-	opacity: 0.6;
+	 filter: brightness(120%);
 }
 
 .time:hover {
-	opacity: 0.6;
+	 filter: brightness(120%);
+	
 }
 
 .legends-container {

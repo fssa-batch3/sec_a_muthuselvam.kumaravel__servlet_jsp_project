@@ -274,6 +274,8 @@
 		      		 }); 
 		  });
 	
+	
+	 
 		document.getElementById("231190591447457").addEventListener("submit", function (event) {
 		showLoadingScreen();
 		  let div = document.querySelector(".time.selected").id;
@@ -316,7 +318,6 @@
 		    e.target.classList.contains("time") &&
 		    !e.target.classList.contains("selected") 
 		  ) {
-		
 		  for(let i=0; i<time_selected.length; i++){
 		    if (time_selected[i].classList.contains("selected")){
 		    	time_selected[i].classList.remove("selected")
