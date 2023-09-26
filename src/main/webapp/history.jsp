@@ -26,7 +26,7 @@
   
   <body>
 
-<button class="button-6" role="button"> <a href="index.jsp">Go Back</a> </button>
+ <a href="index.jsp"><button class="button-6" role="button">Go Back</button></a> 
  <% String errMsg = request.getParameter("error");
     if(errMsg!=null){
     	%>

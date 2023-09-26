@@ -273,8 +273,6 @@
 		        console.error('Error:', error);
 		      		 }); 
 		  });
-	
-	
 	 
 		document.getElementById("231190591447457").addEventListener("submit", function (event) {
 		showLoadingScreen();

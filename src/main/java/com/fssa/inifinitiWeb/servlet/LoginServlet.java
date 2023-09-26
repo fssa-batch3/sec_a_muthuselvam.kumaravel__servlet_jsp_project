@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		PrintWriter out = response.getWriter();
 		if( email.equals("admin@gmail.com") && password.equals("admin@143")) {
-			response.sendRedirect("companyList.jsp");
+			response.sendRedirect("admindashboard.jsp");
 		} else {
 		try {
 			UserService.loginUser(email,password);

@@ -87,7 +87,7 @@
            
         </ul>
 
-       <button class="btn">  <a
+         <a
           class="book-now"<% 
           String loggedInEmail = (String) session.getAttribute("loggedInEmail");
        boolean hasNullValues = false;
@@ -103,8 +103,8 @@
       <% } else { %>
           href="GetAllCompanyCardServlet"
           <% } %>
-          >Book Now</a>
-        </button>
+          ><button class="btn">Book Now</button></a>
+        
         
       </nav>
       <div class="sec-2">
