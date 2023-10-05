@@ -70,20 +70,18 @@ public class TimeSelector extends HttpServlet {
 				bookedSeats = bookingService.readRowCountByShuttleId(shuttle.getShuttleId());
 				check = booking.checkExistingBookingInSmaeShuttle(shuttle.getShuttleId(), email);
 			} catch (ServiceException | DaoException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-            // Include the bookedSeats property in the JSON object
 			jsonTimeSlot.put("check", check);
             jsonTimeSlot.put("bookedSeats", bookedSeats);
 
             jsonTimeSlots.add(jsonTimeSlot);
         }
         
-        // Check if availableTimes is empty or null
+       
         if (availableTimes == null || availableTimes.isEmpty()) {
-            // Return a default JSON response
+           
             JSONObject jsonResponse = new JSONObject();
             jsonResponse.put("error", "No available times found.");
             response.setContentType("application/json");
@@ -92,11 +90,11 @@ public class TimeSelector extends HttpServlet {
         } else {
         	JSONArray jsonTimes = new JSONArray(jsonTimeSlots);
 
-        	// Create a JSON object to hold the response
+        	
         	JSONObject jsonResponse = new JSONObject();
-        	jsonResponse.put("times", jsonTimes); // Include the time slots and booked seats in the response
+        	jsonResponse.put("times", jsonTimes);
 
-        	// Send the JSON object as the response
+        	
         	response.setContentType("application/json");
         	try (PrintWriter out = response.getWriter()) {
         	    out.print(jsonResponse.toString());

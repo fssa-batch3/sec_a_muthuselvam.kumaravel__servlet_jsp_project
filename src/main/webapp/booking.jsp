@@ -125,7 +125,7 @@
 				</label>
 				<div id="cid_7">
 					<select id="dateSelection" name="date">
-						<option value="" hidden selected disabled></option>
+						<option value="" hidden selected disabled>Select a Date</option>
 						<%
 						ShuttleService shuttleService2 = new ShuttleService();
 						List<Shuttle> shuttleList2 = shuttleService2.readAllTime();
@@ -201,7 +201,6 @@
 		    const selectedMonth = parseInt(selectedDateParts[1], 10) - 1; 
 		    const selectedDay = parseInt(selectedDateParts[0], 10);
 		    const selectedDateObj = new Date(selectedYear, selectedMonth, selectedDay);
-
 		    const today = new Date(); 
 		    today.setHours(0, 0, 0, 0);
 		    fetch('TimeSelector?date=' + selectedDate +'&company=' + company)
