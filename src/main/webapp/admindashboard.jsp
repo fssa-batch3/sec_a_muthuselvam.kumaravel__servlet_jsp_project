@@ -159,7 +159,7 @@
                         <thead>
                             <tr>
                                 <td>Name</td>
-                                <td>Date</td>
+                                <td>Destination</td>
                                 <td>Seat-No</td>
                                 <td>Status</td>
                             </tr>
@@ -173,7 +173,7 @@
                     %>
                              <tr>
     <td id="name"><%= i.getUserName() %></td>
-    <td id="date"></td>
+    <td id="date"><%= i.getDestination() %></td>
     <td id="seat_num"><%= i.getSeatNum() %></td>
     <td>
       <span class="status delivered">Active</span>

@@ -96,11 +96,10 @@ public class SeatBooking extends HttpServlet {
         String requestBody = reader.lines().collect(Collectors.joining());
 
         try {
-            // Parse the JSON data to retrieve the divValue
+           
             JSONObject jsonData = new JSONObject(requestBody);
             String divValue = jsonData.getString("divValue");
 
-            // Now, you have the divValue and can use it as needed
             if( divValue != null) {
             	 System.out.println("divValue :" + divValue);
             	 HttpSession session = request.getSession(false);
@@ -108,14 +107,12 @@ public class SeatBooking extends HttpServlet {
             }
            
 
-            // You can also send a response back to the client if needed
-            
 
             
         } catch (Exception e) {
-            // Handle JSON parsing or other exceptions here
+           
             e.printStackTrace();
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // Set an appropriate error status
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST); 
         }
     }
 	private void handleFormDataRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
